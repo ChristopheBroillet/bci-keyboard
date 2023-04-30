@@ -9,8 +9,8 @@ hub_process = mindaffectBCI.online_bci.startHubProcess()
 # start the ganglion acquisition process
 # Using brainflow for the acquisition driver.
 #  so change the board_id and other args to use other boards
-acq_args =dict(board_id=1, serial_port='com4') # connect to the ganglion
-acq_process = mindaffectBCI.online_bci.startacquisitionProcess('brainflow', acq_args)
+#acq_args =dict(board_id=1, serial_port='com4') # connect to the ganglion
+#acq_process = mindaffectBCI.online_bci.startacquisitionProcess('brainflow', acq_args)
 
 # start a fake-data stream
 # with 4-channels running at 200Hz
@@ -30,10 +30,10 @@ decoder_process = mindaffectBCI.online_bci.startDecoderProcess('decoder', decode
 
 
 # check all is running?
-print("Hub running {}".format(hub_process.poll() is None))
-print("Acquisition running {}".format(acq_process.is_alive()))
-print("Decoder running {}".format(decoder_process.is_alive()))
-print("Everything running? {}".format(mindaffectBCI.online_bci.check_is_running(hub_process,acq_process,decoder_process)))
+#print("Hub running {}".format(hub_process.poll() is None))
+#print("Acquisition running {}".format(acq_process.is_alive()))
+#print("Decoder running {}".format(decoder_process.is_alive()))
+#print("Everything running? {}".format(mindaffectBCI.online_bci.check_is_running(hub_process,acq_process,decoder_process)))
 
 
 symbols=[["I'm happy","I'm sad"], ["I want to play","I want to sleep"]],

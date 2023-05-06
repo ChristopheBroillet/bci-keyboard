@@ -10,6 +10,7 @@ def SignalHandler_SIGINT(SignalNumber,Frame):
         mindaffectBCI.online_bci.shutdown(acq_process)
     if "decoder_process" in locals():
         mindaffectBCI.online_bci.shutdown(decoder_process)
+    print("Application closed")
     print()
     exit()
 
@@ -48,9 +49,9 @@ acq_args = {
     "mac_address": "f8:06:40:fe:0f:14",
     # Christophe Linux
     # https://mindaffect-bci.readthedocs.io/en/latest/amp_config.html#ampref
-    "serial_port": "/dev/ttyACM0",
+    # "serial_port": "/dev/ttyACM0",
     # Emmanuel MacOS
-    # "serial_port": "com4",
+    "serial_port": "/dev/cu.usbmodem11",
 }
 acq_process = mindaffectBCI.online_bci.startacquisitionProcess('brainflow', acq_args)
 

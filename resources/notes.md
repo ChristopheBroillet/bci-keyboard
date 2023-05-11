@@ -30,9 +30,14 @@ Different type of brainwaves depending on the frequency:
 ### Evoked potentials
 These are similar than event-related potentials but with a lower latency. While ERP are associated with higher cognitive process, EP are a response with a quick stimulus (with a visual feature, or some audio trigger)
 1. P300 could also have a spike related to a evoked potential
-1. Steady-state (visual) evoked potential (SSvEP) can be used with repeated visual stimulus (like a blinking effect in our case) and this will then be activated at the same frequency than the blinking. That is what our BCI is used to work 
+1. Steady-state (visual) evoked potential (SSvEP) can be used with repeated visual stimulus (like a blinking effect in our case) and this will then be activated at the same frequency than the blinking. That is what our BCI is used to work
 
 
 ## Code and implementation
 - Indices of the landmarks of FaceMesh https://github.com/Unity-Technologies/arfoundation-samples/issues/754
 - We are implementing an evoked-response BCI https://mindaffect-bci.readthedocs.io/en/latest/how_an_evoked_bci_works.html that is at each blink/flash a spike is measures. By knowing the frequence, we can compare the frequence with the sequence of spikes measured: https://sapienlabs.org/lab-talk/bci-using-steady-state-visual-evoked-potentials/
+
+
+## TODO to make a good experiement
+1. Make the electrods and the head of the patient wet (gel or water + salt)
+2. Could increase the selection threshold in the settings or in the presentation arguments

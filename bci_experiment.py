@@ -11,7 +11,6 @@ def SignalHandler_SIGINT(SignalNumber, Frame):
 signal.signal(signal.SIGINT, SignalHandler_SIGINT)
 
 config = {
-    # "logdir": "./logs",
     # ACQUISITION
     # Args:
         # host (str, optional): hostname or IP for the utopiahub. Defaults to None.
@@ -29,17 +28,17 @@ config = {
         # config_params (list, optional): additional configuration parameters to send to the board after startup. Defaults to None.
         # trigger_check (bool, optional): flag to configure channel-8 on cyton as trigger input, e.g. for timing tests. Defaults to 0.
         # samplingFrequency (float, optional): desired sampling rate to set the board to. Defaults to 0.
-    "acquisition": "fakedata",
-    # "acquisition": "brainflow",
-    # "acq_args": {
-    #     "board_id": 1,
-    #     "mac_address": "f8:06:40:fe:0f:14",
-    #     # Christophe Linux
-    #     # https://mindaffect-bci.readthedocs.io/en/latest/amp_config.html#ampref
-    #     "serial_port": "/dev/ttyACM0",
-    #     # Emmanuel MacOS
-    #     # "serial_port": "/dev/cu.usbmodem11",
-    # },
+    # "acquisition": "fakedata",
+    "acquisition": "brainflow",
+    "acq_args": {
+        "board_id": 1,
+        "mac_address": "f8:06:40:fe:0f:14",
+        # Christophe Linux
+        # https://mindaffect-bci.readthedocs.io/en/latest/amp_config.html#ampref
+        "serial_port": "/dev/ttyACM0",
+        # Emmanuel MacOS
+        # "serial_port": "/dev/cu.usbmodem11",
+    },
     # DECODER
     # Args:
         # ui (UtopiaDataInterface, optional): The utopia data interface class. Defaults to None.
@@ -60,22 +59,6 @@ config = {
         # prediction_offsets ([ListInt], optional): a list of stimulus offsets to try at prediction time to cope with stimulus timing jitter.  Defaults to None.
 
     "decoder": "decoder",
-    # "decoder_args": {
-    #     # Filter frequencies
-    #     "stopband": ((5, 30, "bandpass"), (45, 65)),
-    #     # Post-filtering sampling rate of the data, should be greater than twice the maximum frequency
-    #     "out_fs": 100,
-    #     # 're', 'fe', 'flash', what is the brain response trigger
-    #     # 're' is rising-edge and 'fe' is falling-edge
-    #     "evtlabs": ("re", "fe", "flash"),
-    #     # Expected brain response after x ms
-    #     # For SSvEP ideally between 100 and 400ms, should be as small as possible
-    #     "tau_ms": 300,
-    #     # End-of-calibration plots
-    #     "calplots": False,
-    #     # Prediction plots
-    #     "predplots": False,
-    # },
     # From the ssvep_bci.json
     "decoder_args":{
         "stopband" : [[45,65],[0,3],[25,-1]],
@@ -105,15 +88,52 @@ config = {
     "presentation_args": {
         "ncal": 10,
         "npred": 10,
-        "selectionThreshold": 0.3,
-        "symbols": [['F', 'R', 'I']],
+        "selectionThreshold": 0.2,
+        "symbols": [['C', 'H'], ['A', 'I']],
         "stimfile": "ssvep.png",
         # "framesperbit": 1,
         "fullscreen": False,
-        # "fullscreen_stimulus": true,
-        # "simple_calibration": true,
+        "calibration_trialduration": 10,
+        # "fullscreen_stimulus": False,
+        # "simple_calibration": True,
         # "host": "-",
-    }
+    },
+
+
+    # TRIGGER CHECK
+    # "decoder":"decoder",
+    # "decoder_args":{
+    #     "stopband" : [[45,65],[5.5,25,"bandpass"]],
+    #     "out_fs" : 100,
+    #     "evtlabs" : ["re","fe"],
+    #     "ftype":"butter",
+    #     "order":6,
+    #     "cv":5,
+    #     "label":"decoder",
+    #     "tau_ms" : 450,
+    #     "calplots" : False,
+    #     "predplots" : False
+    # },
+    #
+    #
+    # "presentation":"selectionMatrix",
+    # "presentation_args":{
+    #     "ncal":10,
+    #     "npred":100,
+    #     "selectionThreshold":0.1,
+    #     "symbols":"symbols.txt",
+    #     "calibration_symbols":[["0","1","2"],["3","4","5"],["6","7","8"]],
+    #     "stimfile":"mgold_65_6532_psk_60hz.png",
+    #     "framesperbit":1,
+    #     "fullscreen":True,
+    #     "fullscreen_stimulus":True,
+    #     "simple_calibration":True,
+    #     "optosensor":True,
+    #     "host":"-"
+    # }
 }
 
 mindaffectBCI.online_bci.run(**config)
+
+# from mindaffectBCI.decoder.trigger_check import trigger_check
+# trigger_check('-')

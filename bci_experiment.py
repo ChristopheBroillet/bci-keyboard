@@ -33,10 +33,9 @@ config = {
     "acq_args": {
         "board_id": 1,
         "mac_address": "f8:06:40:fe:0f:14",
-        # Christophe Linux
-        # https://mindaffect-bci.readthedocs.io/en/latest/amp_config.html#ampref
+        # On Linux
         "serial_port": "/dev/ttyACM0",
-        # Emmanuel MacOS
+        # On MacOS
         # "serial_port": "/dev/cu.usbmodem11",
     },
     # DECODER
@@ -59,7 +58,6 @@ config = {
         # prediction_offsets ([ListInt], optional): a list of stimulus offsets to try at prediction time to cope with stimulus timing jitter.  Defaults to None.
 
     "decoder": "decoder",
-    # From the ssvep_bci.json
     "decoder_args":{
         "stopband" : [[45,65],[0,3],[25,-1]],
         "out_fs" : 100,
@@ -89,51 +87,12 @@ config = {
         "ncal": 10,
         "npred": 10,
         "selectionThreshold": 0.2,
-        "symbols": [['C', 'H'], ['A', 'I']],
+        "symbols": [['H', 'C', 'O'], ['A', 'S', 'N']],
         "stimfile": "ssvep.png",
-        # "framesperbit": 1,
+        "framesperbit": 2,
         "fullscreen": False,
         "calibration_trialduration": 10,
-        # "fullscreen_stimulus": False,
-        # "simple_calibration": True,
-        # "host": "-",
     },
-
-
-    # TRIGGER CHECK
-    # "decoder":"decoder",
-    # "decoder_args":{
-    #     "stopband" : [[45,65],[5.5,25,"bandpass"]],
-    #     "out_fs" : 100,
-    #     "evtlabs" : ["re","fe"],
-    #     "ftype":"butter",
-    #     "order":6,
-    #     "cv":5,
-    #     "label":"decoder",
-    #     "tau_ms" : 450,
-    #     "calplots" : False,
-    #     "predplots" : False
-    # },
-    #
-    #
-    # "presentation":"selectionMatrix",
-    # "presentation_args":{
-    #     "ncal":10,
-    #     "npred":100,
-    #     "selectionThreshold":0.1,
-    #     "symbols":"symbols.txt",
-    #     "calibration_symbols":[["0","1","2"],["3","4","5"],["6","7","8"]],
-    #     "stimfile":"mgold_65_6532_psk_60hz.png",
-    #     "framesperbit":1,
-    #     "fullscreen":True,
-    #     "fullscreen_stimulus":True,
-    #     "simple_calibration":True,
-    #     "optosensor":True,
-    #     "host":"-"
-    # }
 }
 
 mindaffectBCI.online_bci.run(**config)
-
-# from mindaffectBCI.decoder.trigger_check import trigger_check
-# trigger_check('-')
